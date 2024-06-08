@@ -19,42 +19,92 @@ class OnboardingPage extends StatelessWidget {
         controllerColor: Theme.of(context).buttonTheme.colorScheme?.secondary,
         speed: 1.8,
         background: [
-          Image.asset('lib/assets/image3.jpg'),
-          Image.asset('lib/assets/image3.jpg'),
-          Image.asset('lib/assets/image3.jpg'),
+          Image.asset('lib/assets/image3.jpg', height: 400),
+          Image.asset('lib/assets/image3.jpg', height: 400),
+          Image.asset('lib/assets/image3.jpg', height: 400),
         ],
         centerBackground: true,
-        trailing: const Text('Hi!'), // Remove
         pageBodies: [
           Container(
+            alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Center(
-                child: Text('Hi!',
-                    style: TextStyle(
-                        fontSize:
-                            Theme.of(context).textTheme.displayMedium?.fontSize,
-                        color:
-                            Theme.of(context).textTheme.displayMedium?.color))),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                const SizedBox(
+                  height: 480,
+                ),
+                Text(
+                  'On your way...',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.displayMedium,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'to find the perfect looking Onboarding for your app?',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.displayMedium,
+                ),
+              ],
+            ),
           ),
           Container(
+            alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Center(
-                child: Text('Hi!',
-                    style: TextStyle(
-                        fontSize:
-                            Theme.of(context).textTheme.displayMedium?.fontSize,
-                        color:
-                            Theme.of(context).textTheme.displayMedium?.color))),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                const SizedBox(
+                  height: 480,
+                ),
+                Text(
+                  'On your way...',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.displayMedium,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'to find the perfect looking Onboarding for your app?',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.displayMedium,
+                ),
+              ],
+            ),
           ),
           Container(
+            alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Center(
-                child: Text('Hi!',
-                    style: TextStyle(
-                        fontSize:
-                            Theme.of(context).textTheme.displayMedium?.fontSize,
-                        color:
-                            Theme.of(context).textTheme.displayMedium?.color))),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                const SizedBox(
+                  height: 480,
+                ),
+                Text(
+                  'On your way...',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.displayMedium,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'to find the perfect looking Onboarding for your app?',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.displayMedium,
+                ),
+              ],
+            ),
           ),
         ]);
   }
