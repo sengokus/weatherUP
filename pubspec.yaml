@@ -1,0 +1,25 @@
+name: weatherup
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.4.0-209.0.dev <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_onboarding_slider: ^1.0.11
+  go_router: ^14.1.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - lib/assets/image1.jpg
+    - lib/assets/image2.jpg
+    - lib/assets/image3.jpg
