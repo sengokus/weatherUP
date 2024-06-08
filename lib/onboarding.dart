@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 
@@ -7,33 +6,56 @@ class OnboardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
-      home: OnBoardingSlider(
-          totalPage: 3,
-          headerBackgroundColor: Colors.white,
-          speed: 1.8,
-          background: [
-            Image.asset('lib/assets/image1.jpg'),
-            Image.asset('lib/assets/image2.jpg'),
-            Image.asset('lib/assets/image3.jpg'),
-          ],
-          pageBodies: [
-            Container(
-              child: Center(
-                child: Text('Page 1'),
-              ),
+    return OnBoardingSlider(
+        totalPage: 3,
+        headerBackgroundColor: Colors.transparent,
+        skipIcon: Icon(Icons.keyboard_arrow_right,
+            color: Theme.of(context).buttonTheme.colorScheme?.secondary),
+        finishButtonText: "Get Started",
+        finishButtonStyle: FinishButtonStyle(
+          backgroundColor: Theme.of(context).buttonTheme.colorScheme?.primary,
+        ),
+        speed: 1.8,
+        background: [
+          Image.asset('lib/assets/image1.jpg'),
+          Image.asset('lib/assets/image2.jpg'),
+          Image.asset('lib/assets/image3.jpg'),
+        ],
+        centerBackground: true,
+        pageBodies: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: const Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 480,
+                ),
+                Text('Description Text 1'),
+              ],
             ),
-            Container(
-              child: Center(
-                child: Text('Page 2'),
-              ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: const Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 480,
+                ),
+                Text('Description Text 2'),
+              ],
             ),
-            Container(
-              child: Center(
-                child: Text('Page 3'),
-              ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: const Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 480,
+                ),
+                Text('Description Text 3'),
+              ],
             ),
-          ]),
-    );
+          ),
+        ]);
   }
 }
