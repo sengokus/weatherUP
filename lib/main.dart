@@ -23,7 +23,8 @@ class MainApp extends StatelessWidget {
       routerConfig: _router,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primaryColor: const Color.fromARGB(255, 8, 14, 41),
+          primaryColor: const Color.fromARGB(255, 4, 8, 26),
+          splashColor: const Color.fromARGB(255, 16, 27, 75),
           textTheme: const TextTheme(
             displayLarge: TextStyle(
               fontSize: 24,
@@ -43,8 +44,8 @@ class MainApp extends StatelessWidget {
           buttonTheme: const ButtonThemeData(
             colorScheme: ColorScheme(
                 brightness: Brightness.dark,
-                primary: Color.fromARGB(255, 40, 64, 170),
-                onPrimary: Color.fromARGB(255, 40, 64, 170),
+                primary: Color.fromARGB(255, 45, 129, 207),
+                onPrimary: Color.fromARGB(255, 45, 129, 207),
                 secondary: Color.fromARGB(255, 233, 234, 235),
                 onSecondary: Color.fromARGB(255, 233, 234, 235),
                 error: Color.fromARGB(255, 230, 30, 30),

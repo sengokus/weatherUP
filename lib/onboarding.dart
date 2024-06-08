@@ -8,53 +8,53 @@ class OnboardingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return OnBoardingSlider(
         totalPage: 3,
-        headerBackgroundColor: Colors.transparent,
+        headerBackgroundColor: Theme.of(context).primaryColor,
+        pageBackgroundColor: Theme.of(context).primaryColor,
         skipIcon: Icon(Icons.keyboard_arrow_right,
             color: Theme.of(context).buttonTheme.colorScheme?.secondary),
-        finishButtonText: "Get Started",
+        finishButtonText: 'Get Started',
         finishButtonStyle: FinishButtonStyle(
-          backgroundColor: Theme.of(context).buttonTheme.colorScheme?.primary,
-        ),
+            backgroundColor: Theme.of(context).buttonTheme.colorScheme?.primary,
+            splashColor: Theme.of(context).splashColor),
+        controllerColor: Theme.of(context).buttonTheme.colorScheme?.secondary,
         speed: 1.8,
         background: [
-          Image.asset('lib/assets/image1.jpg'),
-          Image.asset('lib/assets/image2.jpg'),
+          Image.asset('lib/assets/image3.jpg'),
+          Image.asset('lib/assets/image3.jpg'),
           Image.asset('lib/assets/image3.jpg'),
         ],
         centerBackground: true,
+        trailing: const Text('Hi!'), // Remove
         pageBodies: [
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: const Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 480,
-                ),
-                Text('Description Text 1'),
-              ],
-            ),
+            child: Center(
+                child: Text('Hi!',
+                    style: TextStyle(
+                        fontSize:
+                            Theme.of(context).textTheme.displayMedium?.fontSize,
+                        color:
+                            Theme.of(context).textTheme.displayMedium?.color))),
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: const Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 480,
-                ),
-                Text('Description Text 2'),
-              ],
-            ),
+            child: Center(
+                child: Text('Hi!',
+                    style: TextStyle(
+                        fontSize:
+                            Theme.of(context).textTheme.displayMedium?.fontSize,
+                        color:
+                            Theme.of(context).textTheme.displayMedium?.color))),
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: const Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 480,
-                ),
-                Text('Description Text 3'),
-              ],
-            ),
+            child: Center(
+                child: Text('Hi!',
+                    style: TextStyle(
+                        fontSize:
+                            Theme.of(context).textTheme.displayMedium?.fontSize,
+                        color:
+                            Theme.of(context).textTheme.displayMedium?.color))),
           ),
         ]);
   }
