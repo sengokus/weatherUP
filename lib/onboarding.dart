@@ -14,19 +14,14 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   final List<Widget> _pages = [
     const SliderPage(
-        title: "Keep",
-        description:
-            "Accept cryptocurrencies and digital assets, keep thern here, or send to orthers",
-        image: "lib/assets/image1.jpg"),
+        title: "Meow", description: "Meowwww", image: "lib/assets/image1.jpg"),
     const SliderPage(
-        title: "Buy",
-        description:
-            "Buy Bitcoin and cryptocurrencies with VISA and MasterVard right in the App",
+        title: "Meow",
+        description: "Meowwwwwwww",
         image: "lib/assets/image2.jpg"),
     const SliderPage(
-        title: "Sell",
-        description:
-            "Sell your Bitcoin cryptocurrencies or Change with orthres digital assets or flat money",
+        title: "Meow",
+        description: "Meowwwwwwwwwwwwww",
         image: "lib/assets/image3.jpg"),
   ];
 
@@ -89,16 +84,19 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   decoration: BoxDecoration(
                       color: Colors.blue,
                       borderRadius: BorderRadius.circular(35)),
-                  child: (_currentPage == (_pages.length - 1))
-                      ? Text(
-                          "Get Started",
-                          style: Theme.of(context).textTheme.displayMedium,
-                        )
-                      : const Icon(
-                          Icons.navigate_next,
-                          size: 50,
-                          color: Colors.white,
-                        ),
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 250),
+                    child: (_currentPage == (_pages.length - 1))
+                        ? Text(
+                            "Get Started",
+                            style: Theme.of(context).textTheme.displayMedium,
+                          )
+                        : const Icon(
+                            Icons.navigate_next,
+                            size: 50,
+                            color: Colors.white,
+                          ),
+                  ),
                 ),
               ),
               const SizedBox(
