@@ -87,8 +87,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 child: AnimatedContainer(
                   alignment: Alignment.center,
                   duration: const Duration(milliseconds: 300),
-                  height: 70,
-                  width: (_currentPage == (_pages.length - 1)) ? 200 : 70,
+                  height: 50,
+                  width: (_currentPage == (_pages.length - 1)) ? 180 : 50,
                   decoration: BoxDecoration(
                       color: Colors.blue,
                       borderRadius: BorderRadius.circular(35)),
