@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
 import 'package:weatherup/components/sliderpage.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -87,9 +89,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   child: AnimatedSwitcher(
                     duration: const Duration(milliseconds: 250),
                     child: (_currentPage == (_pages.length - 1))
-                        ? Text(
-                            "Get Started",
-                            style: Theme.of(context).textTheme.displayMedium,
+                        ? InkWell(
+                            onTap: () {
+                              // Navigate to the HomePage
+                              context.go('/home');
+                            },
+                            child: Text(
+                              "Get Started",
+                              style: Theme.of(context).textTheme.displayMedium,
+                            ),
                           )
                         : const Icon(
                             Icons.navigate_next,

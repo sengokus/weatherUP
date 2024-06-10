@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'onboarding.dart';
+import 'homepage.dart';
 
 void main() {
   runApp(const MainApp());
@@ -12,10 +13,10 @@ final _router = GoRouter(routes: [
     path: '/',
     builder: (context, state) => const OnboardingPage(),
   ),
-  // GoRoute(
-  //   path: '/',
-  //   builder: (context, state) => const HomePage(),
-  // )
+  GoRoute(
+    path: '/home',
+    builder: (context, state) => const HomePage(),
+  )
 ]);
 
 class MainApp extends StatelessWidget {
