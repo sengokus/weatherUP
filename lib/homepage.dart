@@ -19,15 +19,6 @@ class _HomePageState extends State<HomePage> {
               "Welcome to the HomePage",
               style: TextStyle(fontSize: 24),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // Navigate to the OnboardingPage
-              },
-              child: const Text("Get Started"),
-            ),
           ],
         ),
       ),
