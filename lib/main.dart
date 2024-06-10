@@ -28,17 +28,18 @@ class MainApp extends StatelessWidget {
       routerConfig: _router,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+          fontFamily: 'Poppins',
           primaryColor: const Color.fromARGB(255, 4, 8, 26),
           splashColor: const Color.fromARGB(255, 16, 27, 75),
           textTheme: const TextTheme(
             displayLarge: TextStyle(
               fontSize: 24,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w700,
               color: Color.fromARGB(255, 233, 234, 235),
             ),
             displayMedium: TextStyle(
               fontSize: 18,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
               color: Color.fromARGB(255, 233, 234, 235),
             ),
             bodyLarge: TextStyle(

@@ -10,7 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_onboarding_slider: ^1.0.11
+  geolocator: ^12.0.0
   go_router: ^14.1.4
+  weather: ^3.1.1
 
 dev_dependencies:
   flutter_test:
@@ -23,3 +25,13 @@ flutter:
     - lib/assets/image1.jpg
     - lib/assets/image2.jpg
     - lib/assets/image3.jpg
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: lib/assets/fonts/Poppins-Regular.ttf
+        - asset: lib/assets/fonts/Poppins-Light.ttf
+          weight: 300
+        - asset: lib/assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: lib/assets/fonts/Poppins-Bold.ttf
+          weight: 700
