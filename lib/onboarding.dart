@@ -38,6 +38,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
+          Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+              )),
           PageView.builder(
             scrollDirection: Axis.horizontal,
             onPageChanged: _onchanged,
