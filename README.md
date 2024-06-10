@@ -3,7 +3,7 @@ A simple weather app, created using Flutter.
 
 # App Usage
 ## Goals
-* Create a simple weather app using an open-source weather API.
+* Create a simple weather app using OpenWeather API.
 * Additional features to be added.
 
 # Project Setup
@@ -19,6 +19,6 @@ flutter pub get
 
 ## Creating a New Branch
 The following naming conventions should be followed:
-* ```pages/<page-name>``` for new pages
 * ```feature/<feature-name>``` for features
 * ```bugfix/<issue-name>``` for bugfixing
+* ```enhancement/<feature-name>``` for feature enhancements
