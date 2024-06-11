@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:geolocator/geolocator.dart';
 import 'package:weather/weather.dart';
 
 import 'package:weatherup/components/background.dart';
+import 'package:weatherup/components/temperature.dart';
 import 'package:weatherup/utils/const.dart';
 import 'package:weatherup/utils/geolocator.dart';
 
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
       });
     } catch (e) {
       setState(() {
-        _locationError = e.toString();
+        _locationError = "Failed to fetch location data: $e";
       });
     }
   }
@@ -67,12 +67,37 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return BuildBackground(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
+        centerTitle: true,
+        title: Text(
+          _weather?.areaName ?? '',
+          style: Theme.of(context).textTheme.displayMedium,
+        ),
+        // leading: IconButton(
+        //   icon: const Icon(Icons.refresh),
+        //   style: ButtonStyle(
+        //     iconColor: MaterialStateProperty.all<Color>(
+        //       Theme.of(context).buttonTheme.colorScheme!.surface,
+        //     ),
+        //   ),
+        //   onPressed: () {
+        //     // Add onPressed
+        //   },
+        // )
+      ),
       children: <Widget>[
         Center(
           child: _currentPosition != null && _weather != null
-              ? Text(
-                  "Latitude: ${_currentPosition!.latitude}\nLongitude: ${_currentPosition!.longitude}\nWeather: ${_weather?.areaName ?? ''}",
-                  style: Theme.of(context).textTheme.displayMedium,
+              ? Column(
+                  children: [
+                    const SizedBox(height: 50),
+                    buildTemperatureIndicator(
+                      "${_weather!.temperature!.celsius!.toStringAsFixed(1)}\u00B0",
+                      Text(_weather!.date.toString()),
+                      context,
+                    )
+                  ],
                 )
               : _locationError != null
                   ? Text(

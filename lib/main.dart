@@ -30,6 +30,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
           fontFamily: 'Poppins',
           primaryColor: const Color.fromARGB(255, 4, 8, 26),
+          primaryColorLight: const Color.fromARGB(255, 45, 129, 207),
           splashColor: const Color.fromARGB(255, 16, 27, 75),
           textTheme: const TextTheme(
             displayLarge: TextStyle(
