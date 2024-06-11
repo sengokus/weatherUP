@@ -68,30 +68,33 @@ class _HomePageState extends State<HomePage> {
                     // Text("${weatherService?.weather?.weatherDescription}"),
                     TemperatureIndicator(
                       temp:
-                          "${weatherService?.weather!.temperature!.celsius!.toStringAsFixed(1)}\u00B0",
+                          "${weatherService?.weather!.temperature!.celsius!.toStringAsFixed(1)}\u00B0C",
                     ),
                     const SizedBox(height: 50),
                     if (weatherService?.forecast != null)
                       Expanded(
-                        child: ListView.builder(
-                          itemCount: weatherService?.forecast.length,
-                          itemBuilder: (context, index) {
-                            final forecast = weatherService?.forecast[index];
-                            return ListTile(
-                              contentPadding: const EdgeInsets.all(2.0),
-                              leading: Image.network(
-                                "https://openweathermap.org/img/wn/${forecast?.weatherIcon}.png",
-                              ),
-                              title: Text(forecast?.weatherDescription ?? '',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displayMedium),
-                              subtitle: Text(
-                                "${forecast?.temperature?.celsius?.toStringAsFixed(1)}\u00B0",
-                                style: Theme.of(context).textTheme.bodyLarge,
-                              ),
-                            );
-                          },
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: ListView.builder(
+                            itemCount: weatherService?.forecast.length,
+                            itemBuilder: (context, index) {
+                              final forecast = weatherService?.forecast[index];
+                              return ListTile(
+                                contentPadding: const EdgeInsets.all(2.0),
+                                leading: Image.network(
+                                  "https://openweathermap.org/img/wn/${forecast?.weatherIcon}.png",
+                                ),
+                                title: Text(forecast?.weatherDescription ?? '',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displayMedium),
+                                subtitle: Text(
+                                  "${forecast?.temperature?.celsius?.toStringAsFixed(1)}\u00B0C",
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                ),
+                              );
+                            },
+                          ),
                         ),
                       ),
                   ],
