@@ -49,10 +49,9 @@ class _HomePageState extends State<HomePage> {
               ? Column(
                   children: [
                     const SizedBox(height: 50),
-                    buildTemperatureIndicator(
-                      "${weatherService?.weather!.temperature!.celsius!.toStringAsFixed(1)}\u00B0",
-                      Text(weatherService!.weather!.date.toString()),
-                      context,
+                    TemperatureIndicator(
+                      temp:
+                          "${weatherService?.weather!.temperature!.celsius!.toStringAsFixed(1)}\u00B0",
                     )
                   ],
                 )
