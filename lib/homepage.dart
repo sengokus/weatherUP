@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'package:weatherup/utils/weather.dart';
@@ -13,6 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late WeatherService? weatherService;
+
   bool isLoading = true;
 
   @override
@@ -32,6 +35,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    log("Weather area name: ${weatherService?.weather?.areaName}");
+    log("Forecast length: ${weatherService?.forecast.length}");
+    log("Example forecast: ${weatherService?.forecast[0]}");
+    log("Location error: ${weatherService?.locationError}");
     return BuildBackground(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -44,7 +51,8 @@ class _HomePageState extends State<HomePage> {
       children: <Widget>[
         Center(
           child: weatherService?.currentPosition != null &&
-                  weatherService?.weather != null
+                  weatherService?.weather != null &&
+                  weatherService?.forecast != null
               ? Column(
                   children: [
                     const SizedBox(height: 20),
@@ -61,17 +69,31 @@ class _HomePageState extends State<HomePage> {
                       temp:
                           "${weatherService?.weather!.temperature!.celsius!.toStringAsFixed(1)}\u00B0",
                     ),
-                    // TODO: Forecast
-                    // Text(
-                    //   weatherService?.forecast[0]?.temperature!.celsius
-                    //           ?.toStringAsFixed(1) ??
-                    //       '',
-                    //   style: Theme.of(context).textTheme.displayMedium,
-                    // ),
-                    // Text(
-                    //   weatherService?.forecast[0]?.weatherDescription ?? '',
-                    //   style: Theme.of(context).textTheme.displayMedium,
-                    // ),
+                    const SizedBox(height: 50),
+                    if (weatherService!.forecast.isNotEmpty)
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: weatherService!.forecast.length - 1,
+                          itemBuilder: (context, index) {
+                            final forecast =
+                                weatherService?.forecast[index + 1];
+                            return ListTile(
+                              contentPadding: const EdgeInsets.all(2.0),
+                              leading: Image.network(
+                                "https://openweathermap.org/img/wn/${forecast?.weatherIcon}.png",
+                              ),
+                              title: Text(forecast?.weatherDescription ?? '',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displayMedium),
+                              subtitle: Text(
+                                "${forecast?.temperature?.celsius?.toStringAsFixed(1)}\u00B0",
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                   ],
                 )
               : weatherService?.locationError != null
