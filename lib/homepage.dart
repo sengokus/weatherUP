@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:geolocator/geolocator.dart';
-import 'package:weather/weather.dart';
-
+import 'package:weatherup/utils/weather.dart';
 import 'package:weatherup/components/background.dart';
-import 'package:weatherup/utils/const.dart';
-import 'package:weatherup/utils/geolocator.dart';
+import 'package:weatherup/components/temperature.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,68 +12,71 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final WeatherFactory _wf = WeatherFactory(OPENWEATHER_API_KEY);
-
-  Position? _currentPosition;
-  String? _locationError;
-  Weather? _weather;
+  late WeatherService? weatherService;
+  bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _initWeather();
+    weatherService = WeatherService(); // Initialize the WeatherService
+    initWeather();
   }
 
-  Future<void> _initWeather() async {
-    await _fetchCurrentPosition();
-    if (_currentPosition != null) {
-      await _fetchWeather();
-    }
-  }
-
-  // Fetch the current position of the device
-  Future<void> _fetchCurrentPosition() async {
-    try {
-      Position position = await determinePosition();
-      setState(() {
-        _currentPosition = position;
-        _locationError = null;
-      });
-    } catch (e) {
-      setState(() {
-        _locationError = e.toString();
-      });
-    }
-  }
-
-  // Fetch the weather data based on the current position
-  Future<void> _fetchWeather() async {
-    try {
-      Weather w = await _wf.currentWeatherByLocation(
-          _currentPosition!.latitude, _currentPosition!.longitude);
-      setState(() {
-        _weather = w;
-      });
-    } catch (e) {
-      setState(() {
-        _locationError = "Failed to fetch weather data: $e";
-      });
-    }
+  // Initialize the weather data
+  Future<void> initWeather() async {
+    await weatherService?.initWeather();
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return BuildBackground(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
+        centerTitle: true,
+        title: Text(
+          weatherService?.weather?.areaName ?? '',
+          style: Theme.of(context).textTheme.displayMedium,
+        ),
+      ),
       children: <Widget>[
         Center(
-          child: _currentPosition != null && _weather != null
-              ? Text(
-                  "Latitude: ${_currentPosition!.latitude}\nLongitude: ${_currentPosition!.longitude}\nWeather: ${_weather?.areaName ?? ''}",
-                  style: Theme.of(context).textTheme.displayMedium,
+          child: weatherService?.currentPosition != null &&
+                  weatherService?.weather != null
+              ? Column(
+                  children: [
+                    const SizedBox(height: 20),
+                    Container(
+                      height: MediaQuery.sizeOf(context).height * 0.2,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                        image: NetworkImage(
+                            "https://openweathermap.org/img/wn/${weatherService!.weather?.weatherIcon}@4x.png"),
+                      )),
+                    ),
+                    // Text("${weatherService?.weather?.weatherDescription}"),
+                    TemperatureIndicator(
+                      temp:
+                          "${weatherService?.weather!.temperature!.celsius!.toStringAsFixed(1)}\u00B0",
+                    ),
+                    // TODO: Forecast
+                    // Text(
+                    //   weatherService?.forecast[0]?.temperature!.celsius
+                    //           ?.toStringAsFixed(1) ??
+                    //       '',
+                    //   style: Theme.of(context).textTheme.displayMedium,
+                    // ),
+                    // Text(
+                    //   weatherService?.forecast[0]?.weatherDescription ?? '',
+                    //   style: Theme.of(context).textTheme.displayMedium,
+                    // ),
+                  ],
                 )
-              : _locationError != null
+              : weatherService?.locationError != null
                   ? Text(
-                      "Error: $_locationError",
+                      "Error: ${weatherService?.locationError}",
                       style: Theme.of(context).textTheme.displayMedium,
                     )
                   : const CircularProgressIndicator(),
