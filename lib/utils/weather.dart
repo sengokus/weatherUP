@@ -10,7 +10,8 @@ class WeatherService {
   Position? currentPosition;
   String? locationError;
   Weather? weather;
-  late List<Weather?> forecast;
+  List<Weather> forecast = [];
+  late List<Weather?> forecastList;
 
   Future<void> initWeather() async {
     await fetchCurrentPosition();
@@ -55,16 +56,16 @@ class WeatherService {
     try {
       List<Weather> f = await _wf.fiveDayForecastByLocation(
           currentPosition!.latitude, currentPosition!.longitude);
-      forecast = _filterForecast(f);
+      forecast = _filterForecastList(f);
     } catch (e) {
       locationError = "Failed to fetch forecast data: $e";
     }
   }
 
   // Filter the forecast to get one forecast per day
-  List<Weather> _filterForecast(List<Weather> forecast) {
-    late Map<String, Weather> dailyForecast = {};
-    for (var f in forecast) {
+  List<Weather> _filterForecastList(List<Weather> forecastList) {
+    Map<String, Weather> dailyForecast = {};
+    for (var f in forecastList) {
       String date = f.date!.toIso8601String().split('T')[0];
       if (!dailyForecast.containsKey(date)) {
         dailyForecast[date] = f;

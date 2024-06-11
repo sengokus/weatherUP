@@ -52,7 +52,8 @@ class _HomePageState extends State<HomePage> {
         Center(
           child: weatherService?.currentPosition != null &&
                   weatherService?.weather != null &&
-                  weatherService?.forecast != null
+                  weatherService?.forecast != null &&
+                  weatherService!.forecast.isNotEmpty
               ? Column(
                   children: [
                     const SizedBox(height: 20),
@@ -70,13 +71,12 @@ class _HomePageState extends State<HomePage> {
                           "${weatherService?.weather!.temperature!.celsius!.toStringAsFixed(1)}\u00B0",
                     ),
                     const SizedBox(height: 50),
-                    if (weatherService!.forecast.isNotEmpty)
+                    if (weatherService?.forecast != null)
                       Expanded(
                         child: ListView.builder(
-                          itemCount: weatherService!.forecast.length - 1,
+                          itemCount: weatherService?.forecast.length,
                           itemBuilder: (context, index) {
-                            final forecast =
-                                weatherService?.forecast[index + 1];
+                            final forecast = weatherService?.forecast[index];
                             return ListTile(
                               contentPadding: const EdgeInsets.all(2.0),
                               leading: Image.network(
