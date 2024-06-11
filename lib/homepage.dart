@@ -52,7 +52,9 @@ class _HomePageState extends State<HomePage> {
                       temp:
                           "${weatherService?.weather!.temperature!.celsius!.toStringAsFixed(1)}\u00B0",
                     ),
+                    // Text("${weatherService?.weather?.weatherDescription}"),
                     const SizedBox(height: 50),
+                    // TODO: Forecast
                     Text(
                       weatherService?.forecast[0]?.temperature!.celsius
                               ?.toStringAsFixed(1) ??
@@ -60,9 +62,7 @@ class _HomePageState extends State<HomePage> {
                       style: Theme.of(context).textTheme.displayMedium,
                     ),
                     Text(
-                      weatherService?.forecast[1]?.temperature!.celsius
-                              ?.toStringAsFixed(1) ??
-                          '',
+                      weatherService?.forecast[0]?.weatherDescription ?? '',
                       style: Theme.of(context).textTheme.displayMedium,
                     ),
                   ],

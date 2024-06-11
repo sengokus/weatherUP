@@ -40,7 +40,7 @@ class _TemperatureIndicatorState extends State<TemperatureIndicator> {
         Text("Feels like", style: Theme.of(context).textTheme.bodyLarge),
         Text(widget.temp,
             style: TextStyle(
-                fontSize: 48,
+                fontSize: 64,
                 fontWeight:
                     Theme.of(context).textTheme.displayLarge!.fontWeight,
                 color: Theme.of(context).textTheme.displayLarge!.color)),
