@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:weatherup/utils/weather.dart';
-
 import 'package:weatherup/components/background.dart';
 import 'package:weatherup/components/temperature.dart';
 
@@ -52,7 +51,20 @@ class _HomePageState extends State<HomePage> {
                     TemperatureIndicator(
                       temp:
                           "${weatherService?.weather!.temperature!.celsius!.toStringAsFixed(1)}\u00B0",
-                    )
+                    ),
+                    const SizedBox(height: 50),
+                    Text(
+                      weatherService?.forecast[0]?.temperature!.celsius
+                              ?.toStringAsFixed(1) ??
+                          '',
+                      style: Theme.of(context).textTheme.displayMedium,
+                    ),
+                    Text(
+                      weatherService?.forecast[1]?.temperature!.celsius
+                              ?.toStringAsFixed(1) ??
+                          '',
+                      style: Theme.of(context).textTheme.displayMedium,
+                    ),
                   ],
                 )
               : weatherService?.locationError != null
