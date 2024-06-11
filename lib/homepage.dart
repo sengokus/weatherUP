@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import 'package:weatherup/utils/weather.dart';
@@ -35,10 +33,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    log("Weather area name: ${weatherService?.weather?.areaName}");
-    log("Forecast length: ${weatherService?.forecast.length}");
-    log("Example forecast: ${weatherService?.forecast[0]}");
-    log("Location error: ${weatherService?.locationError}");
     return BuildBackground(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -52,8 +46,7 @@ class _HomePageState extends State<HomePage> {
         Center(
           child: weatherService?.currentPosition != null &&
                   weatherService?.weather != null &&
-                  weatherService?.forecast != null &&
-                  weatherService!.forecast.isNotEmpty
+                  weatherService?.forecast != null
               ? Column(
                   children: [
                     const SizedBox(height: 20),
