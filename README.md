@@ -10,7 +10,7 @@ A simple weather app, created using Flutter.
 ## Clone a Repository
 1. Clone the repo locally.
 ```
-https://github.com/weatherUP.git
+https://github.com/sengokus/weatherUP.git
 ```
 2. Install dependencies. 
 ```
