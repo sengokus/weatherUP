@@ -13,6 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late WeatherService? weatherService;
+
   bool isLoading = true;
 
   @override
@@ -42,45 +43,57 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       children: <Widget>[
-        Center(
-          child: weatherService?.currentPosition != null &&
-                  weatherService?.weather != null
-              ? Column(
-                  children: [
-                    const SizedBox(height: 20),
-                    Container(
-                      height: MediaQuery.sizeOf(context).height * 0.2,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                        image: NetworkImage(
-                            "https://openweathermap.org/img/wn/${weatherService!.weather?.weatherIcon}@4x.png"),
-                      )),
+        weatherService?.currentPosition != null &&
+                weatherService?.weather != null &&
+                weatherService?.forecast != null
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 20),
+                  Container(
+                    height: MediaQuery.sizeOf(context).height * 0.2,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                      image: NetworkImage(
+                          "https://openweathermap.org/img/wn/${weatherService!.weather?.weatherIcon}@4x.png"),
+                    )),
+                  ),
+                  // Text("${weatherService?.weather?.weatherDescription}"),
+                  TemperatureIndicator(
+                    temp:
+                        "${weatherService?.weather!.temperature!.celsius!.toStringAsFixed(1)}\u00B0C",
+                  ),
+                  const SizedBox(height: 50),
+                  if (weatherService?.forecast != null)
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: weatherService?.forecast.length,
+                        itemBuilder: (context, index) {
+                          final forecast = weatherService?.forecast[index];
+                          return ListTile(
+                            leading: Image.network(
+                              "https://openweathermap.org/img/wn/${forecast?.weatherIcon}.png",
+                            ),
+                            title: Text(forecast?.weatherDescription ?? '',
+                                style:
+                                    Theme.of(context).textTheme.displayMedium),
+                            subtitle: Text(
+                              "${forecast?.temperature?.celsius?.toStringAsFixed(1)}\u00B0C",
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          );
+                        },
+                      ),
                     ),
-                    // Text("${weatherService?.weather?.weatherDescription}"),
-                    TemperatureIndicator(
-                      temp:
-                          "${weatherService?.weather!.temperature!.celsius!.toStringAsFixed(1)}\u00B0",
-                    ),
-                    // TODO: Forecast
-                    // Text(
-                    //   weatherService?.forecast[0]?.temperature!.celsius
-                    //           ?.toStringAsFixed(1) ??
-                    //       '',
-                    //   style: Theme.of(context).textTheme.displayMedium,
-                    // ),
-                    // Text(
-                    //   weatherService?.forecast[0]?.weatherDescription ?? '',
-                    //   style: Theme.of(context).textTheme.displayMedium,
-                    // ),
-                  ],
-                )
-              : weatherService?.locationError != null
-                  ? Text(
-                      "Error: ${weatherService?.locationError}",
-                      style: Theme.of(context).textTheme.displayMedium,
-                    )
-                  : const CircularProgressIndicator(),
-        ),
+                ],
+              )
+            : weatherService?.locationError != null
+                ? Text(
+                    "Error: ${weatherService?.locationError}",
+                    style: Theme.of(context).textTheme.displayMedium,
+                  )
+                : const CircularProgressIndicator(),
       ],
     );
   }
