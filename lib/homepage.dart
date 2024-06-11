@@ -47,24 +47,31 @@ class _HomePageState extends State<HomePage> {
                   weatherService?.weather != null
               ? Column(
                   children: [
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 20),
+                    Container(
+                      height: MediaQuery.sizeOf(context).height * 0.2,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                        image: NetworkImage(
+                            "https://openweathermap.org/img/wn/${weatherService!.weather?.weatherIcon}@4x.png"),
+                      )),
+                    ),
+                    // Text("${weatherService?.weather?.weatherDescription}"),
                     TemperatureIndicator(
                       temp:
                           "${weatherService?.weather!.temperature!.celsius!.toStringAsFixed(1)}\u00B0",
                     ),
-                    // Text("${weatherService?.weather?.weatherDescription}"),
-                    const SizedBox(height: 50),
                     // TODO: Forecast
-                    Text(
-                      weatherService?.forecast[0]?.temperature!.celsius
-                              ?.toStringAsFixed(1) ??
-                          '',
-                      style: Theme.of(context).textTheme.displayMedium,
-                    ),
-                    Text(
-                      weatherService?.forecast[0]?.weatherDescription ?? '',
-                      style: Theme.of(context).textTheme.displayMedium,
-                    ),
+                    // Text(
+                    //   weatherService?.forecast[0]?.temperature!.celsius
+                    //           ?.toStringAsFixed(1) ??
+                    //       '',
+                    //   style: Theme.of(context).textTheme.displayMedium,
+                    // ),
+                    // Text(
+                    //   weatherService?.forecast[0]?.weatherDescription ?? '',
+                    //   style: Theme.of(context).textTheme.displayMedium,
+                    // ),
                   ],
                 )
               : weatherService?.locationError != null

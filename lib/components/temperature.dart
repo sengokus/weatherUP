@@ -13,6 +13,7 @@ class TemperatureIndicator extends StatefulWidget {
 }
 
 class _TemperatureIndicatorState extends State<TemperatureIndicator> {
+  String day = DateFormat('EEEE').format(DateTime.now());
   late String formattedTime;
   late Timer timer;
 
@@ -37,6 +38,9 @@ class _TemperatureIndicatorState extends State<TemperatureIndicator> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Text(day, style: Theme.of(context).textTheme.displayMedium),
+        Text(formattedTime, style: Theme.of(context).textTheme.bodyLarge),
+        const SizedBox(height: 30),
         Text("Feels like", style: Theme.of(context).textTheme.bodyLarge),
         Text(widget.temp,
             style: TextStyle(
@@ -44,7 +48,6 @@ class _TemperatureIndicatorState extends State<TemperatureIndicator> {
                 fontWeight:
                     Theme.of(context).textTheme.displayLarge!.fontWeight,
                 color: Theme.of(context).textTheme.displayLarge!.color)),
-        Text(formattedTime, style: Theme.of(context).textTheme.bodyLarge),
       ],
     );
   }
